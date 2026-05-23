@@ -7,7 +7,7 @@ export default function ProductCard({ p }: { p: ProductoResumen }) {
     <Link to={`/productos/${p.id}`} className="bg-white rounded-lg shadow hover:shadow-md transition overflow-hidden block">
       <div className="h-48 bg-gray-100 flex items-center justify-center">
         {p.imagenPrincipal ? (
-          <img src={p.imagenPrincipal} alt={p.nombre} className="w-full h-full object-cover" />
+          <img src={p.imagenPrincipal} alt={p.nombre} className="w-full h-full object-contain p-2" />
         ) : (
           <span className="text-gray-400 text-4xl">🧶</span>
         )}

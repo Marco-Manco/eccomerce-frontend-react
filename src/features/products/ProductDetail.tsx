@@ -10,6 +10,7 @@ export default function ProductDetail() {
   const [selectedVariant, setSelectedVariant] = useState<number | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [addItem, { isLoading: adding }] = useAddItemMutation();
+  const [modalImg, setModalImg] = useState<string | null>(null);
 
   if (isLoading) return <p className="text-center py-20">Cargando...</p>;
   if (!producto) return <p className="text-center py-20">Producto no encontrado</p>;
@@ -20,7 +21,7 @@ export default function ProductDetail() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div className="bg-gray-100 rounded-lg h-80 flex items-center justify-center">
         {producto.imagenes[0] ? (
-          <img src={producto.imagenes[0].url} alt={producto.nombre} className="w-full h-full object-cover rounded-lg" />
+          <img src={producto.imagenes[0].url} alt={producto.nombre} className="w-full h-full object-contain rounded-lg cursor-pointer" onClick={() => setModalImg(producto.imagenes[0]?.url)} />
         ) : (
           <span className="text-6xl">🧶</span>
         )}
@@ -70,6 +71,11 @@ export default function ProductDetail() {
           </div>
         )}
       </div>
+      {modalImg && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50" onClick={() => setModalImg(null)}>
+          <img src={modalImg} className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg" onClick={e => e.stopPropagation()} />
+        </div>
+      )}
     </div>
   );
 }
