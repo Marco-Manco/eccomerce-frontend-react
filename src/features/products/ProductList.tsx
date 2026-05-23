@@ -72,7 +72,7 @@ export default function ProductList() {
                 }`}
               >
                 <div className="h-64 md:h-80 bg-gray-100">
-                  <img src={p.imagenPrincipal!} alt={p.nombre} className="w-full h-full object-cover" />
+                  <img src={p.imagenPrincipal!} alt={p.nombre} className="w-full h-full object-contain p-4" />
                 </div>
                 <div className="p-8 flex flex-col justify-center">
                   <p className="text-sm text-purple-600 uppercase tracking-wide">{p.categoria}</p>
