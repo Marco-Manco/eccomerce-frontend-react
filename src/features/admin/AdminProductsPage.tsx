@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useCreateProductMutation } from './adminApi';
 import { useGetCategoriesQuery, flattenCategories } from './categoriesApi';
 import { useGetProductsQuery } from '../products/productsApi';
@@ -18,6 +18,13 @@ export default function AdminProductsPage() {
   const { data: categorias } = useGetCategoriesQuery();
   const cats = categorias ? flattenCategories(categorias) : [];
   const { data, refetch } = useGetProductsQuery({ size: 50 });
+  const formRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (editingId && formRef.current) {
+      formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [editingId]);
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -72,11 +79,13 @@ export default function AdminProductsPage() {
 
       {/* Formulario editar */}
       {editingId && (
-        <EditProductForm
-          productoId={editingId}
-          onClose={() => setEditingId(null)}
-          onSaved={() => { refetch(); setEditingId(null); }}
-        />
+        <div ref={formRef}>
+          <EditProductForm
+            productoId={editingId}
+            onClose={() => setEditingId(null)}
+            onSaved={() => { refetch(); setEditingId(null); }}
+          />
+        </div>
       )}
 
       {/* Grilla */}
