@@ -1,4 +1,4 @@
-export const API_BASE = '/api';
+export const API_BASE = import.meta.env.VITE_API_URL || '';
 export const ROLES = { CLIENTE: 'CLIENTE', ADMIN: 'ADMIN' } as const;
 
 export function formatCurrency(value: number): string {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useGetCartQuery, useClearCartMutation } from '../cart/cartApi';
-import { formatCurrency } from '../../shared/utils/constants';
+import { formatCurrency, API_BASE } from '../../shared/utils/constants';
 import { CreditCard, MapPin, Plus } from 'lucide-react';
 
 interface Direccion {
@@ -29,7 +29,7 @@ export default function CheckoutPage() {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch('/api/usuarios/me/direcciones', {
+    fetch(API_BASE + '/api/usuarios/me/direcciones', {
       headers: { Authorization: `Bearer ${token}` },
     }).then((r) => r.json()).then((dirs) => {
       setDirecciones(dirs);
@@ -52,7 +52,7 @@ export default function CheckoutPage() {
     setCheckingOut(true);
     setError('');
     try {
-      const resp = await fetch('/api/checkout', {
+      const resp = await fetch(API_BASE + '/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ direccionEnvioId }),

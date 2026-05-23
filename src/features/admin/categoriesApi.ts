@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { Categoria } from '../../shared/types/models';
+import { API_BASE } from '../../shared/utils/constants';
 
 export const categoriesApi = createApi({
   reducerPath: 'categoriesApi',
-  baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
+  baseQuery: fetchBaseQuery({ baseUrl: API_BASE + '/api' }),
   endpoints: (builder) => ({
     getCategories: builder.query<Categoria[], void>({
       query: () => '/categorias',

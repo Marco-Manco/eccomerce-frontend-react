@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useLoginMutation, useRegisterMutation } from './authApi';
 import { useAppDispatch } from '../../app/store';
 import { setCredentials } from './authSlice';
+import { API_BASE } from '../../shared/utils/constants';
 
 export default function LoginPage() {
   const [isRegister, setIsRegister] = useState(false);
@@ -86,7 +87,7 @@ export default function LoginPage() {
         </div>
 
         <a
-          href="http://localhost:8080/oauth2/authorization/google"
+          href={(API_BASE || 'http://localhost:8080') + '/oauth2/authorization/google'}
           className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2 rounded hover:bg-gray-50 transition"
         >
           <svg className="w-5 h-5" viewBox="0 0 24 24">

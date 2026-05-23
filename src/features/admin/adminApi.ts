@@ -1,11 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { ProductoDetalle, Variante, Pedido, PageResponse } from '../../shared/types/models';
 import type { RootState } from '../../app/store';
+import { API_BASE } from '../../shared/utils/constants';
 
 export const adminApi = createApi({
   reducerPath: 'adminApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: '/api',
+    baseUrl: API_BASE + '/api',
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
       if (token) headers.set('Authorization', `Bearer ${token}`);

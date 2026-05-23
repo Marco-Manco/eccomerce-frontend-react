@@ -1,11 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { Carrito } from '../../shared/types/models';
 import type { RootState } from '../../app/store';
+import { API_BASE } from '../../shared/utils/constants';
 
 export const cartApi = createApi({
   reducerPath: 'cartApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: '/api/carrito',
+    baseUrl: API_BASE + '/api/carrito',
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
       if (token) headers.set('Authorization', `Bearer ${token}`);

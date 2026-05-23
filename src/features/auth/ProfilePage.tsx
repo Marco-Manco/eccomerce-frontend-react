@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAppSelector } from '../../app/store';
 import { Plus, Pencil, Trash2, MapPin, User } from 'lucide-react';
+import { API_BASE } from '../../shared/utils/constants';
 
 interface Direccion {
   id: number;
@@ -33,7 +34,7 @@ export default function ProfilePage() {
   const token = localStorage.getItem('token');
 
   const fetchDirecciones = async () => {
-    const resp = await fetch('/api/usuarios/me/direcciones', {
+    const resp = await fetch(API_BASE + '/api/usuarios/me/direcciones', {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (resp.ok) setDirecciones(await resp.json());
@@ -49,7 +50,7 @@ export default function ProfilePage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const url = editId ? `/api/usuarios/me/direcciones/${editId}` : '/api/usuarios/me/direcciones';
+    const url = editId ? `${API_BASE}/api/usuarios/me/direcciones/${editId}` : `${API_BASE}/api/usuarios/me/direcciones`;
     const method = editId ? 'PUT' : 'POST';
 
     const resp = await fetch(url, {
@@ -69,7 +70,7 @@ export default function ProfilePage() {
   };
 
   const handleDelete = async (id: number) => {
-    await fetch(`/api/usuarios/me/direcciones/${id}`, {
+    await fetch(`${API_BASE}/api/usuarios/me/direcciones/${id}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` },
     });
