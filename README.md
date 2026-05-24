@@ -122,3 +122,21 @@ Panel con tabs: Productos (grilla + formulario de edición con secciones), Categ
 
 ### Stepper de pedido
 Barra de progreso con 5 pasos: PENDIENTE → PAGADO → EN_PREPARACIÓN → ENVIADO → ENTREGADO. Colores: verde (completado), púrpura (actual), gris (pendiente), rojo (cancelado).
+
+## 🌐 Demo en vivo
+
+**[eccomerce-frontend-react.vercel.app](https://eccomerce-frontend-react.vercel.app)**
+
+## 🔑 Credenciales de prueba
+
+| Rol | Email | Contraseña |
+|-----|-------|------------|
+| **Admin** | `admin@ecommerce.com` | `admin1234` |
+
+## 💰 Probar pagos (MercadoPago Sandbox)
+
+En el checkout serás redirigido a MercadoPago. Logueate con:
+- **Usuario:** `TESTUSER3477234149032093924`
+- **Contraseña:** `NUD38I13vV`
+
+> ⚠️ Sandbox — no se realizan cobros reales.
