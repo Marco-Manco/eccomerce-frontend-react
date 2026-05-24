@@ -27,7 +27,7 @@ export const adminApi = createApi({
       invalidatesTags: (_r, _e, { id }) => [{ type: 'Product', id }],
     }),
     updateVariant: builder.mutation<Variante, { id: number; precio?: number; stock?: number; color?: string; talle?: string; activo?: boolean }>({
-      query: ({ id, ...body }) => ({ url: `/admin/variantes/${id}`, method: 'PUT', body }),
+      query: ({ id, ...body }) => ({ url: `/admin/productos/variantes/${id}`, method: 'PUT', body }),
       invalidatesTags: ['Product'],
     }),
     addVariant: builder.mutation<Variante, { productoId: number; sku: string; color?: string; talle?: string; precio: number; stock: number }>({
